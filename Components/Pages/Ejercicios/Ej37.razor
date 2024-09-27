@@ -1,0 +1,38 @@
+@page "/ejercicio37"
+@rendermode InteractiveServer 
+<PageTitle>Ejercicio 37 - Intercambiar Dígitos</PageTitle>
+
+<h3>Ejercicio 37 - Intercambiar Dígitos</h3>
+<p>Ingrese un número y dos posiciones para intercambiar los dígitos:</p>
+
+<input type="number" @bind="numero" placeholder="Número" />
+<input type="number" @bind="posicion1" placeholder="Posición 1" />
+<input type="number" @bind="posicion2" placeholder="Posición 2" />
+<button @onclick="IntercambiarDigitos">Intercambiar</button>
+
+@if (resultado != null)
+{
+    <p>El nuevo número después de intercambiar es: @resultado</p>
+}
+
+@code {
+    private int numero;
+    private int posicion1;
+    private int posicion2;
+    private int? resultado;
+
+    private void IntercambiarDigitos()
+    {
+        resultado = Intercambiar(numero, posicion1, posicion2);
+    }
+
+    private int Intercambiar(int numero, int pos1, int pos2)
+    {
+        char[] digitos = numero.ToString().ToCharArray();
+        if (pos1 > digitos.Length || pos2 > digitos.Length) return numero; // Si las posiciones no son válidas
+        char temp = digitos[pos1 - 1]; // Ajustar a 0-index
+        digitos[pos1 - 1] = digitos[pos2 - 1];
+        digitos[pos2 - 1] = temp;
+        return int.Parse(new string(digitos));
+    }
+}

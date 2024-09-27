@@ -1,0 +1,37 @@
+@page "/ejercicio29"
+@rendermode InteractiveServer 
+<PageTitle>Ejercicio 29 - Número de Fibonacci</PageTitle>
+
+<h3>Ejercicio 29 - Número de Fibonacci</h3>
+<p>Ingrese un número para verificar si pertenece a la serie de Fibonacci:</p>
+
+<input type="number" @bind="numero" placeholder="Número" />
+<button @onclick="VerificarFibonacci">Verificar</button>
+
+@if (resultado != null)
+{
+    <p>El número @numero pertenece a la serie de Fibonacci: @resultado</p>
+}
+
+@code {
+    private int numero;
+    private bool? resultado;
+
+    private void VerificarFibonacci()
+    {
+        resultado = EsFibonacci(numero);
+    }
+
+    private bool EsFibonacci(int n)
+    {
+        int a = 0, b = 1, c;
+        if (n == a || n == b) return true;
+        while (b < n)
+        {
+            c = a + b;
+            a = b;
+            b = c;
+        }
+        return b == n;
+    }
+}

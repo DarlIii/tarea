@@ -1,0 +1,32 @@
+@page "/ejercicio7"
+@rendermode InteractiveServer 
+<PageTitle>Ejercicio 7 - Código ASCII</PageTitle>
+
+<h3>Ejercicio 7 - Código ASCII</h3>
+<p>Ingrese un carácter para obtener su código ASCII:</p>
+
+<input type="text" @bind="caracter" maxlength="1" />
+<button @onclick="ObtenerCodigoASCII">Obtener</button>
+
+@if (resultado != null)
+{
+    <p>El código ASCII de '@caracter' es: @resultado</p>
+}
+
+@code {
+    private string caracter;
+    private int? resultado;
+
+    private void ObtenerCodigoASCII()
+    {
+        if (!string.IsNullOrEmpty(caracter))
+        {
+            resultado = ObtenerCodigoASCII(caracter[0]);
+        }
+    }
+
+    private int ObtenerCodigoASCII(char caracter)
+    {
+        return (int)caracter;
+    }
+}

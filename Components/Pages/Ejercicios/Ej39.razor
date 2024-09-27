@@ -1,0 +1,46 @@
+@page "/ejercicio39"
+@rendermode InteractiveServer 
+<PageTitle>Ejercicio 39 - Cantidad de Números Primos</PageTitle>
+
+<h3>Ejercicio 39 - Cantidad de Números Primos en un Rango</h3>
+<p>Ingrese dos números para contar cuántos números primos hay entre ellos:</p>
+
+<input type="number" @bind="inicio" placeholder="Inicio del Rango" />
+<input type="number" @bind="fin" placeholder="Fin del Rango" />
+<button @onclick="ContarPrimos">Contar Primos</button>
+
+@if (resultado != null)
+{
+    <p>La cantidad de números primos entre @inicio y @fin es: @resultado</p>
+}
+
+@code {
+    private int inicio;
+    private int fin;
+    private int? resultado;
+
+    private void ContarPrimos()
+    {
+        resultado = ContarNumerosPrimos(inicio, fin);
+    }
+
+    private int ContarNumerosPrimos(int inicio, int fin)
+    {
+        int contador = 0;
+        for (int i = inicio; i <= fin; i++)
+        {
+            if (EsPrimo(i)) contador++;
+        }
+        return contador;
+    }
+
+    private bool EsPrimo(int numero)
+    {
+        if (numero <= 1) return false;
+        for (int i = 2; i <= Math.Sqrt(numero); i++)
+        {
+            if (numero % i == 0) return false;
+        }
+        return true;
+    }
+}

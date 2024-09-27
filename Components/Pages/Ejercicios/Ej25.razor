@@ -1,0 +1,33 @@
+@page "/ejercicio25"
+@rendermode InteractiveServer 
+<PageTitle>Ejercicio 25 - Dígito en Posición Específica</PageTitle>
+
+<h3>Ejercicio 25 - Dígito en Posición Específica</h3>
+<p>Ingrese un número y un dígito (≤ 5) para obtener el dígito en la posición especificada:</p>
+
+<input type="number" @bind="numero" placeholder="Número" />
+<input type="number" @bind="posicion" placeholder="Posición (≤ 5)" min="1" max="5" />
+<button @onclick="ObtenerDígitoPorPosicion">Obtener</button>
+
+@if (resultado != null)
+{
+    <p>El dígito en la posición @posicion de @numero es: @resultado</p>
+}
+
+@code {
+    private int numero;
+    private int posicion;
+    private int? resultado;
+
+    private void ObtenerDígitoPorPosicion()
+    {
+        resultado = ObtenerDígito(numero, posicion);
+    }
+
+    private int ObtenerDígito(int numero, int posicion)
+    {
+        string strNumero = numero.ToString();
+        if (posicion > strNumero.Length) return -1; // Si la posición no existe
+        return int.Parse(strNumero[strNumero.Length - posicion].ToString());
+    }
+}

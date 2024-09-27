@@ -1,0 +1,37 @@
+@page "/ejercicio23"
+@rendermode InteractiveServer 
+<PageTitle>Ejercicio 23 - Diferencia Primal</PageTitle>
+
+<h3>Ejercicio 23 - Diferencia Primal</h3>
+<p>Ingrese dos números para verificar si la diferencia es un número primo:</p>
+
+<input type="number" @bind="numero1" placeholder="Primer número" />
+<input type="number" @bind="numero2" placeholder="Segundo número" />
+<button @onclick="VerificarDiferenciaPrimal">Verificar</button>
+
+@if (resultado != null)
+{
+    <p>La diferencia entre @numero1 y @numero2 es primo: @resultado</p>
+}
+
+@code {
+    private int numero1;
+    private int numero2;
+    private int? resultado;
+
+    private void VerificarDiferenciaPrimal()
+    {
+        int diferencia = Math.Abs(numero1 - numero2);
+        resultado = EsPrimo(diferencia) ? 1 : 0;
+    }
+
+    private bool EsPrimo(int numero)
+    {
+        if (numero <= 1) return false;
+        for (int i = 2; i <= Math.Sqrt(numero); i++)
+        {
+            if (numero % i == 0) return false;
+        }
+        return true;
+    }
+}

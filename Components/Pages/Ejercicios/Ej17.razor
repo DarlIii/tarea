@@ -1,0 +1,24 @@
+@page "/ejercicio17"
+@rendermode InteractiveServer 
+<PageTitle>Ejercicio 17 - Código ASCII de un Dígito</PageTitle>
+
+<h3>Ejercicio 17 - Código ASCII de un Dígito</h3>
+<p>Ingrese un número para verificar si corresponde a un código ASCII de un dígito:</p>
+
+<input type="number" @bind="codigo" placeholder="Código ASCII" />
+<button @onclick="VerificarCodigoASCII">Verificar</button>
+
+@if (resultado != null)
+{
+    <p>El código ASCII @codigo corresponde a un dígito: @resultado</p>
+}
+
+@code {
+    private int codigo;
+    private int? resultado;
+
+    private void VerificarCodigoASCII()
+    {
+        resultado = (codigo >= 48 && codigo <= 57) ? 1 : 0;
+    }
+}

@@ -1,0 +1,30 @@
+@page "/ejercicio19"
+@rendermode InteractiveServer 
+<PageTitle>Ejercicio 19 - Número de Mínimo 3 Dígitos</PageTitle>
+
+<h3>Ejercicio 19 - Número de Mínimo 3 Dígitos</h3>
+<p>Ingrese un número para verificar si tiene al menos 3 dígitos:</p>
+
+<input type="number" @bind="numero" placeholder="Número" />
+<button @onclick="VerificarTamaño">Verificar</button>
+
+@if (resultado != null)
+{
+    <p>El número @numero tiene al menos 3 dígitos: @resultado</p>
+}
+
+@code {
+    private int numero;
+    private int? resultado;
+
+    private void VerificarTamaño()
+    {
+        resultado = (ContarDigitos(numero) >= 3) ? 1 : 0;
+    }
+
+    private int ContarDigitos(int numero)
+    {
+        if (numero == 0) return 1; // El cero tiene un dígito
+        return (int)Math.Floor(Math.Log10(Math.Abs(numero))) + 1;
+    }
+}

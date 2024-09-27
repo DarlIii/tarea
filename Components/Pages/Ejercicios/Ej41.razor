@@ -1,0 +1,45 @@
+@page "/ejercicio41"
+@rendermode InteractiveServer 
+<PageTitle>Ejercicio 41 - Penúltimo Dígito en Vector</PageTitle>
+
+<h3>Ejercicio 41 - Penúltimo Dígito en Vector</h3>
+<p>Ingrese un vector de 10 posiciones enteras:</p>
+
+@for (int i = 0; i < 10; i++)
+{
+    <input type="number" @bind="vector[i]" class="mb-2" /><br />
+}
+
+<input type="number" @bind="digito" placeholder="Ingrese un dígito" />
+
+<button class="btn btn-primary mt-2" @onclick="CalcularPenultimoDigito">Calcular</button>
+
+@if (resultado != -1)
+{
+    <p class="mt-2">El dígito penúltimo aparece en @resultado números del vector.</p>
+}
+
+@code {
+    private int[] vector = new int[10];
+    private int digito;
+    private int resultado = -1;
+
+    private void CalcularPenultimoDigito()
+    {
+        resultado = ContarPenultimoDigito(vector, digito);
+    }
+
+    private int ContarPenultimoDigito(int[] vector, int digito)
+    {
+        int count = 0;
+        foreach (var num in vector)
+        {
+            var strNum = num.ToString();
+            if (strNum.Length > 1 && strNum[^2].ToString() == digito.ToString())
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+}

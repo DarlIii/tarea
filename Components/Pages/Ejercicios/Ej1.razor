@@ -1,0 +1,29 @@
+@page "/ejercicio1"
+@rendermode InteractiveServer 
+<PageTitle>Ejercicio 1 - Último Dígito</PageTitle>
+
+<h3>Ejercicio 1 - Último Dígito</h3>
+<p>Ingrese un número para obtener su último dígito:</p>
+
+<input type="number" @bind="numero" />
+<button class="btn btn-primary mt-2" @onclick="CalcularUltimoDigito">Calcular</button>
+
+@if (resultado != -1)
+{
+    <p class="mt-2">El último dígito es: @resultado</p>
+}
+
+@code {
+    private int numero;
+    private int resultado = -1; // Inicializado en -1 para que el mensaje no aparezca antes de calcular
+
+    private void CalcularUltimoDigito()
+    {
+        resultado = ObtenerUltimoDigito(numero);
+    }
+
+    private int ObtenerUltimoDigito(int numero)
+    {
+        return Math.Abs(numero) % 10; // Tomar valor absoluto para manejar números negativos
+    }
+}

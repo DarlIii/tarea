@@ -1,0 +1,35 @@
+@page "/ejercicio35"
+@rendermode InteractiveServer 
+<PageTitle>Ejercicio 35 - Factorial de un Número</PageTitle>
+
+<h3>Ejercicio 35 - Factorial de un Número</h3>
+<p>Ingrese un número para obtener su factorial:</p>
+
+<input type="number" @bind="numero" placeholder="Número" />
+<button @onclick="CalcularFactorial">Calcular Factorial</button>
+
+@if (resultado != null)
+{
+    <p>El factorial de @numero es: @resultado</p>
+}
+
+@code {
+    private int numero;
+    private long? resultado;
+
+    private void CalcularFactorial()
+    {
+        resultado = Factorial(numero);
+    }
+
+    private long Factorial(int n)
+    {
+        if (n < 0) return -1; // Factorial no definido para números negativos
+        long resultado = 1;
+        for (int i = 1; i <= n; i++)
+        {
+            resultado *= i;
+        }
+        return resultado;
+    }
+}

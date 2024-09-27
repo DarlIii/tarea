@@ -1,0 +1,40 @@
+@page "/ejercicio13"
+@rendermode InteractiveServer 
+<PageTitle>Ejercicio 13 - Cantidad de Dígitos</PageTitle>
+
+<h3>Ejercicio 13 - Cantidad de Dígitos</h3>
+<p>Ingrese un número para contar cuántas veces aparece un dígito en él:</p>
+
+<input type="number" @bind="numero" placeholder="Número" />
+<input type="number" @bind="digito" placeholder="Dígito" min="0" max="9" />
+<button @onclick="ContarDigitos">Contar</button>
+
+@if (resultado != null)
+{
+    <p>El dígito @digito aparece @resultado veces en el número @numero.</p>
+}
+
+@code {
+    private int numero;
+    private int digito;
+    private int? resultado;
+
+    private void ContarDigitos()
+    {
+        resultado = ContarOcurrencias(numero, digito);
+    }
+
+    private int ContarOcurrencias(int numero, int digito)
+    {
+        int contador = 0;
+        while (numero > 0)
+        {
+            if (numero % 10 == digito)
+            {
+                contador++;
+            }
+            numero /= 10;
+        }
+        return contador;
+    }
+}

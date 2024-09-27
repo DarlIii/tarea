@@ -1,0 +1,58 @@
+@page "/ejercicio43"
+@rendermode InteractiveServer 
+<PageTitle>Ejercicio 43 - Números Primos en Matriz</PageTitle>
+
+<h3>Ejercicio 43 - Números Primos en Matriz</h3>
+<p>Ingrese una matriz de 3x4:</p>
+
+@for (int i = 0; i < 3; i++)
+{
+    @for (int j = 0; j < 4; j++)
+    {
+        <input type="number" @bind="matriz[i, j]" class="mb-2" />
+    }
+    <br />
+}
+
+<button class="btn btn-primary mt-2" @onclick="CalcularPrimos">Calcular</button>
+
+@if (resultado != -1)
+{
+    <p class="mt-2">La cantidad de números primos en la matriz es: @resultado</p>
+}
+
+@code {
+    private int[,] matriz = new int[3, 4];
+    private int resultado = -1;
+
+    private void CalcularPrimos()
+    {
+        resultado = ContarPrimos(matriz);
+    }
+
+    private int ContarPrimos(int[,] matriz)
+    {
+        int count = 0;
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                if (EsPrimo(matriz[i, j]))
+                {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
+    private bool EsPrimo(int numero)
+    {
+        if (numero < 2) return false;
+        for (int i = 2; i <= Math.Sqrt(numero); i++)
+        {
+            if (numero % i == 0) return false;
+        }
+        return true;
+    }
+}

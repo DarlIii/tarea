@@ -1,0 +1,35 @@
+@page "/ejercicio33"
+@rendermode InteractiveServer 
+<PageTitle>Ejercicio 33 - Verificar Palíndromo</PageTitle>
+
+<h3>Ejercicio 33 - Verificar Palíndromo</h3>
+<p>Ingrese un número para verificar si es un palíndromo:</p>
+
+<input type="number" @bind="numero" placeholder="Número" />
+<button @onclick="VerificarPalindromo">Verificar</button>
+
+@if (resultado != null)
+{
+    <p>El número @numero es un palíndromo: @resultado</p>
+}
+
+@code {
+    private int numero;
+    private bool? resultado;
+
+    private void VerificarPalindromo()
+    {
+        resultado = EsPalindromo(numero);
+    }
+
+    private bool EsPalindromo(int numero)
+    {
+        int reversa = 0, original = numero;
+        while (numero > 0)
+        {
+            reversa = reversa * 10 + numero % 10;
+            numero /= 10;
+        }
+        return original == reversa;
+    }
+}

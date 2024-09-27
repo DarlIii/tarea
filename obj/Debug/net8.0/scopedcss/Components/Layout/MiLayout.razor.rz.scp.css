@@ -1,0 +1,16 @@
+#divMain[b-an0009q60a]{
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 50px;
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: solid #f0f0f0;
+    background-color: #f0f0f0;
+    min-height: 500px;
+}
+
+#LinkMudo[b-an0009q60a]{
+    color: #000;
+    text-decoration: none;
+}

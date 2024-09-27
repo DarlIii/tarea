@@ -1,0 +1,26 @@
+@page "/ejercicio11"
+@rendermode InteractiveServer 
+<PageTitle>Ejercicio 11 - Múltiplo de un Dígito</PageTitle>
+
+<h3>Ejercicio 11 - Múltiplo de un Dígito</h3>
+<p>Ingrese un número y un dígito para verificar si el número es múltiplo del dígito:</p>
+
+<input type="number" @bind="numero" placeholder="Número" />
+<input type="number" @bind="digito" placeholder="Dígito" min="1" max="9" />
+<button @onclick="VerificarMultiplo">Verificar</button>
+
+@if (resultado != null)
+{
+    <p>El número @numero es múltiplo de @digito: @resultado</p>
+}
+
+@code {
+    private int numero;
+    private int digito;
+    private int? resultado;
+
+    private void VerificarMultiplo()
+    {
+        resultado = (numero % digito == 0) ? 1 : 0;
+    }
+}

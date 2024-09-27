@@ -1,0 +1,76 @@
+/* Estilos generales para la página de inicio */
+.text-end[b-9x87svpwj8] {
+    margin-bottom: 20px;
+}
+
+/* Estilos para la fila de tarjetas */
+.row[b-9x87svpwj8] {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* Estilos para cada tarjeta */
+.card[b-9x87svpwj8] {
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    border: 2px solid #ffafbd; /* Borde degradado rosa */
+    border-radius: 15px;
+    background: linear-gradient(135deg, #ffafbd 0%, #ffc3a0 100%); /* Fondo degradado rosa a naranja claro */
+}
+
+.card:hover[b-9x87svpwj8] {
+    transform: scale(1.1); /* Aumenta tamaño en hover */
+    box-shadow: 0px 6px 20px rgba(255, 69, 0, 0.3); /* Sombra con color */
+}
+
+/* Imagen dentro de la tarjeta */
+.card-img-top[b-9x87svpwj8] {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    height: 150px;
+    object-fit: cover;
+}
+
+/* Estilos para el contenido de la tarjeta */
+.card-body[b-9x87svpwj8] {
+    padding: 20px;
+    background-color: #fff; /* Fondo blanco para destacar contenido */
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.card-title[b-9x87svpwj8] {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ff6f61; /* Color vibrante */
+    margin-bottom: 10px;
+}
+
+.card-text[b-9x87svpwj8] {
+    font-size: 15px;
+    color: #666;
+}
+
+/* Botón dentro de la tarjeta */
+.btn-primary[b-9x87svpwj8] {
+    background: linear-gradient(135deg, #12c2e9 0%, #c471ed 50%, #f64f59 100%);
+    border: none;
+    padding: 10px 25px;
+    border-radius: 25px;
+    font-size: 16px;
+    color: #fff;
+    transition: background 0.3s ease;
+}
+
+.btn-primary:hover[b-9x87svpwj8] {
+    background: linear-gradient(135deg, #f64f59 0%, #c471ed 50%, #12c2e9 100%);
+}
+
+/* Para pantallas más pequeñas */
+@media (max-width: 768px) {
+    .col-md-4[b-9x87svpwj8] {
+        flex: 0 0 100%;
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+}

@@ -1,0 +1,26 @@
+@page "/ejercicio15"
+@rendermode InteractiveServer 
+<PageTitle>Ejercicio 15 - Múltiplo del Segundo Número</PageTitle>
+
+<h3>Ejercicio 15 - Múltiplo del Segundo Número</h3>
+<p>Ingrese dos números para verificar si el primero es múltiplo del segundo:</p>
+
+<input type="number" @bind="numero1" placeholder="Primer número" />
+<input type="number" @bind="numero2" placeholder="Segundo número" />
+<button @onclick="VerificarMultiplo">Verificar</button>
+
+@if (resultado != null)
+{
+    <p>El número @numero1 es múltiplo de @numero2: @resultado</p>
+}
+
+@code {
+    private int numero1;
+    private int numero2;
+    private int? resultado;
+
+    private void VerificarMultiplo()
+    {
+        resultado = (numero1 % numero2 == 0) ? 1 : 0;
+    }
+}

@@ -1,0 +1,35 @@
+@page "/ejercicio31"
+@rendermode InteractiveServer 
+<PageTitle>Ejercicio 31 - Reversa de un Número</PageTitle>
+
+<h3>Ejercicio 31 - Reversa de un Número</h3>
+<p>Ingrese un número para obtener su reversa:</p>
+
+<input type="number" @bind="numero" placeholder="Número" />
+<button @onclick="ObtenerReversa">Obtener Reversa</button>
+
+@if (resultado != null)
+{
+    <p>La reversa de @numero es: @resultado</p>
+}
+
+@code {
+    private int numero;
+    private int? resultado;
+
+    private void ObtenerReversa()
+    {
+        resultado = CalcularReversa(numero);
+    }
+
+    private int CalcularReversa(int numero)
+    {
+        int reversa = 0;
+        while (numero > 0)
+        {
+            reversa = reversa * 10 + numero % 10;
+            numero /= 10;
+        }
+        return reversa;
+    }
+}

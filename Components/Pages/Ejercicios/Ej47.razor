@@ -1,0 +1,50 @@
+@page "/ejercicio47"
+@rendermode InteractiveServer
+<PageTitle>Ejercicio 47 - Columna del Mayor en Matriz</PageTitle>
+
+<h3>Ejercicio 47 - Columna del Mayor en Matriz</h3>
+<p>Ingrese una matriz de 4x4:</p>
+
+@for (int i = 0; i < 4; i++)
+{
+    @for (int j = 0; j < 4; j++)
+    {
+        <input type="number" @bind="matriz[i, j]" class="mb-2" />
+    }
+    <br />
+}
+
+<button class="btn btn-primary mt-2" @onclick="CalcularColumnaMayor">Calcular</button>
+
+@if (resultado != -1)
+{
+    <p class="mt-2">El mayor número está en la columna @resultado.</p>
+}
+
+@code {
+    private int[,] matriz = new int[4, 4];
+    private int resultado = -1;
+
+    private void CalcularColumnaMayor()
+    {
+        resultado = ObtenerColumnaMayor(matriz);
+    }
+
+    private int ObtenerColumnaMayor(int[,] matriz)
+    {
+        int mayor = matriz[0, 0];
+        int columnaMayor = 0;
+        for (int i = 0; i < 4; i++)
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                if (matriz[i, j] > mayor)
+                {
+                    mayor = matriz[i, j];
+                    columnaMayor = j;
+                }
+            }
+        }
+        return columnaMayor;
+    }
+}

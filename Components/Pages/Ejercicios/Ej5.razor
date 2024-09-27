@@ -1,0 +1,39 @@
+@page "/ejercicio5"
+@rendermode InteractiveServer 
+<PageTitle>Ejercicio 5 - Cantidad de Dígitos Primos</PageTitle>
+
+<h3>Ejercicio 5 - Cantidad de Dígitos Primos</h3>
+<p>Ingrese un número para contar sus dígitos primos:</p>
+
+<input type="number" @bind="numero" />
+<button @onclick="ContarDigitosPrimos">Contar</button>
+
+@if (resultado != null)
+{
+    <p>La cantidad de dígitos primos es: @resultado</p>
+}
+
+@code {
+    private int numero;
+    private int? resultado;
+
+    private void ContarDigitosPrimos()
+    {
+        resultado = ContarDigitosPrimos(numero);
+    }
+
+    private int ContarDigitosPrimos(int numero)
+    {
+        int contador = 0;
+        while (numero > 0)
+        {
+            int digito = numero % 10;
+            if (digito == 2 || digito == 3 || digito == 5 || digito == 7)
+            {
+                contador++;
+            }
+            numero /= 10;
+        }
+        return contador;
+    }
+}

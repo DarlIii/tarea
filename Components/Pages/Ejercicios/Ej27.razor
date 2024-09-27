@@ -1,0 +1,35 @@
+@page "/ejercicio27"
+@rendermode InteractiveServer 
+<PageTitle>Ejercicio 27 - Sumar Dígitos de un Número</PageTitle>
+
+<h3>Ejercicio 27 - Sumar Dígitos de un Número</h3>
+<p>Ingrese un número para obtener la suma de sus dígitos:</p>
+
+<input type="number" @bind="numero" placeholder="Número" />
+<button @onclick="SumarDigitos">Sumar</button>
+
+@if (resultado != null)
+{
+    <p>La suma de los dígitos de @numero es: @resultado</p>
+}
+
+@code {
+    private int numero;
+    private int? resultado;
+
+    private void SumarDigitos()
+    {
+        resultado = CalcularSumaDeDigitos(numero);
+    }
+
+    private int CalcularSumaDeDigitos(int numero)
+    {
+        int suma = 0;
+        while (numero > 0)
+        {
+            suma += numero % 10;
+            numero /= 10;
+        }
+        return suma;
+    }
+}

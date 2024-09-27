@@ -1,0 +1,55 @@
+@page "/ejercicio49"
+@rendermode InteractiveServer 
+<PageTitle>Ejercicio 49 - Moda en Matriz</PageTitle>
+
+<h3>Ejercicio 49 - Moda en Matriz</h3>
+<p>Ingrese una matriz de 5x5:</p>
+
+@for (int i = 0; i < 5; i++)
+{
+    @for (int j = 0; j < 5; j++)
+    {
+        <input type="number" @bind="matriz[i, j]" class="mb-2" />
+    }
+    <br />
+}
+
+<button class="btn btn-primary mt-2" @onclick="CalcularModa">Calcular</button>
+
+@if (resultado != -1)
+{
+    <p class="mt-2">La moda de la matriz es: @resultado.</p>
+}
+
+@code {
+    private int[,] matriz = new int[5, 5];
+    private int resultado = -1;
+
+    private void CalcularModa()
+    {
+        resultado = ObtenerModa(matriz);
+    }
+
+    private int ObtenerModa(int[,] matriz)
+    {
+        var contador = new Dictionary<int, int>();
+
+        for (int i = 0; i < 5; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+                int valor = matriz[i, j];
+                if (contador.ContainsKey(valor))
+                {
+                    contador[valor]++;
+                }
+                else
+                {
+                    contador[valor] = 1;
+                }
+            }
+        }
+
+        return contador.OrderByDescending(x => x.Value).First().Key;
+    }
+}

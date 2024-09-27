@@ -1,0 +1,31 @@
+@page "/ejercicio21"
+@rendermode InteractiveServer 
+<PageTitle>Ejercicio 21 - Todos los Dígitos Iguales</PageTitle>
+
+<h3>Ejercicio 21 - Todos los Dígitos Iguales</h3>
+<p>Ingrese un número para verificar si todos sus dígitos son iguales:</p>
+
+<input type="number" @bind="numero" placeholder="Número" />
+<button @onclick="VerificarDígitosIguales">Verificar</button>
+
+@if (resultado != null)
+{
+    <p>Todos los dígitos de @numero son iguales: @resultado</p>
+}
+
+@code {
+    private int numero;
+    private int? resultado;
+
+    private void VerificarDígitosIguales()
+    {
+        resultado = TodosLosDígitosIguales(numero) ? 1 : 0;
+    }
+
+    private bool TodosLosDígitosIguales(int numero)
+    {
+        string str = numero.ToString();
+        char primerDígito = str[0];
+        return str.All(c => c == primerDígito);
+    }
+}

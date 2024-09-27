@@ -1,0 +1,30 @@
+@page "/ejercicio3"
+@rendermode InteractiveServer 
+<PageTitle>Ejercicio 3 - Cantidad de Dígitos</PageTitle>
+
+<h3>Ejercicio 3 - Cantidad de Dígitos</h3>
+<p>Ingrese un número para contar sus dígitos:</p>
+
+<input type="number" @bind="numero" />
+<button @onclick="ContarDigitos">Contar</button>
+
+@if (resultado != null)
+{
+    <p>La cantidad de dígitos es: @resultado</p>
+}
+
+@code {
+    private int numero;
+    private int? resultado;
+
+    private void ContarDigitos()
+    {
+        resultado = ContarDigitos(numero);
+    }
+
+    private int ContarDigitos(int numero)
+    {
+        if (numero == 0) return 1; // El cero tiene un dígito
+        return (int)Math.Floor(Math.Log10(Math.Abs(numero))) + 1;
+    }
+}
